@@ -11,7 +11,7 @@ class App extends Component {
 
 
   getRecipes = () => {
-    fetch("https://api.edamam.com/search?q=apple&app_id=632e253a&app_key=6666a09ef074ac455f9590ec38d9228e")
+    fetch("https://api.edamam.com/search?q=pork&app_id=632e253a&app_key=6666a09ef074ac455f9590ec38d9228e")
       .then(r => r.json())
       // .then(recipes => this.setState({ recipes: recipes.hits }))
       .then(recipes => this.findFootprintOfRecipes(recipes.hits))
@@ -45,7 +45,8 @@ class App extends Component {
     const ingredientsCO2Footprint = ingredients.map(ingredient => this.findIndividualIngredientFootprint(ingredient))
     const summedIngredientsCO2Footprint = ingredientsCO2Footprint.reduce((a, b) => a + b)
     const summedIngredientsCO2FootprintRounded = summedIngredientsCO2Footprint.toFixed(2)
-    return {name: recipe.label, footprint: summedIngredientsCO2FootprintRounded, footprintPerServing: (summedIngredientsCO2Footprint/recipe.yield).toFixed(2)}
+    const footprintPerServing = (summedIngredientsCO2Footprint / recipe.yield).toFixed(2)
+    return {name: recipe.label, footprint: summedIngredientsCO2FootprintRounded, footprintPerServing: footprintPerServing, colour: this.setColour(footprintPerServing)}
   }
 
   findFootprintOfRecipes = (fetchedRecipes) => {
@@ -55,13 +56,22 @@ class App extends Component {
     this.setState({ recipeFootprintData: recipeFootprints })
   }
 
-  setColour = (recipe) => {
-    const carbonNumber = recipe.footprintPerServing
-    switch carbonNumber
+  setColour = (footprintPerServing) => {
+    const carbonNumber = footprintPerServing
+    console.log(carbonNumber)
+    if (carbonNumber < 0.2){
+      return 115
+    } else if(0.2 < carbonNumber && carbonNumber < 0.5){
+      return 79
+    } else if (0.5 < carbonNumber && carbonNumber < 2) {
+      return 52
+    } else if(2 < carbonNumber){
+      return 0
+    }
   }
 
   render() {
-    const { recipeFootprintData, setColour } = this.state
+    const { recipeFootprintData } = this.state
     return (
       <div className="App">
         <div className="title">
@@ -74,8 +84,7 @@ class App extends Component {
             {
               recipeFootprintData.map(recipe =>
                 <div className="text-wrapper">
-                {/* ${recipe => setColour(recipe)} */}
-                  <p className="card" style={{ background: `hsl(0, 98%, 51%)` }}>
+                  <p className="card" style={{ background: `hsl(${recipe.colour}, 100%, 44%)` }}>
                     <div style={{fontSize: "3vw"}}>
                       {recipe.name}
                     </div>
