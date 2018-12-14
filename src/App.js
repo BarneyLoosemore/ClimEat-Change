@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
+import { ClipLoader } from 'react-spinners';
 
 class App extends Component {
 
@@ -8,7 +9,8 @@ class App extends Component {
     ingredientData: [],
     recipeFootprintData: [],
     filter: '',
-    noResults: false
+    noResults: false,
+    loadingSpinner: false
   }
 
 
@@ -26,9 +28,6 @@ class App extends Component {
 
   componentDidMount(){
     this.getIngredientData()
-  }
-
-  componentDidUpdate(){
   }
 
   findIndividualIngredientFootprint = (ingredient) => {
@@ -58,6 +57,7 @@ class App extends Component {
     const recipeFootprints = recipes.map(recipe => this.findIngredientsFootprint(recipe))
     this.setState({ recipeFootprintData: recipeFootprints })
     this.state.recipeFootprintData.length < 1 ? this.setState({ noResults: true }) : this.setState({ noResults: false })
+    this.setState({ loadingSpinner: false })
   }
 
   setColour = (footprintPerServing) => {
@@ -80,14 +80,19 @@ class App extends Component {
 
   handleSubmit = (event) => {
     if (event.which === 13){
+      this.setState({ loadingSpinner: true })
       this.getRecipes()
     }
   }
 
+  handleMouseOver = (recipe) => {
+
+  }
+
 
   render() {
-    const { recipeFootprintData, noResults } = this.state
-    const { handleChange, handleSubmit } = this
+    const { recipeFootprintData, noResults, loadingSpinner } = this.state
+    const { handleChange, handleSubmit, handleMouseOver } = this
 
     return (
       <div className="App">
@@ -96,6 +101,13 @@ class App extends Component {
         </div>
         <div>
           <input onChange={(e) => handleChange(e)} onKeyPress={(e) => handleSubmit(e)} style={{ border:"2px solid black" }}></input>
+        </div>
+        <div>
+            {
+              loadingSpinner
+              ? <ClipLoader />
+              : null
+            }
         </div>
           <div className="texts-container">
             { noResults
@@ -109,8 +121,6 @@ class App extends Component {
                       {recipe.name}
                     </div>
                     <div style={{ fontSize: "4vw", paddingBottom: "8%" }}>
-                      {/* Total: {recipe.footprint}kg CO2 
-                      <hr/> */}
                       {recipe.footprintPerServing}kg CO2
                     </div>
                   </p>
