@@ -6,14 +6,14 @@ class App extends Component {
   state = {
     recipes: [],
     ingredientData: [],
-    recipeFootprintData: []
+    recipeFootprintData: [],
+    filter: ''
   }
 
 
   getRecipes = () => {
-    fetch("https://api.edamam.com/search?q=pork&app_id=632e253a&app_key=6666a09ef074ac455f9590ec38d9228e")
+    fetch(`https://api.edamam.com/search?q=${this.state.filter}&app_id=632e253a&app_key=6666a09ef074ac455f9590ec38d9228e`)
       .then(r => r.json())
-      // .then(recipes => this.setState({ recipes: recipes.hits }))
       .then(recipes => this.findFootprintOfRecipes(recipes.hits))
   }
 
@@ -26,6 +26,12 @@ class App extends Component {
   componentDidMount(){
     this.getRecipes()
     this.getIngredientData()
+  }
+
+  componentDidUpdate(){
+    if(this.state.filter.length > 2){
+      this.getRecipes()
+    }
   }
 
   findIndividualIngredientFootprint = (ingredient) => {
@@ -60,9 +66,9 @@ class App extends Component {
     const carbonNumber = footprintPerServing
     console.log(carbonNumber)
     if (carbonNumber < 0.2){
-      return 115
+      return 125
     } else if(0.2 < carbonNumber && carbonNumber < 0.5){
-      return 79
+      return 70
     } else if (0.5 < carbonNumber && carbonNumber < 2) {
       return 52
     } else if(2 < carbonNumber){
@@ -70,27 +76,36 @@ class App extends Component {
     }
   }
 
+  handleInputChange = (event) => {
+    this.setState({ filter: event.target.value })
+  }
+
+
+
   render() {
     const { recipeFootprintData } = this.state
+    const { handleInputChange } = this
+
     return (
       <div className="App">
         <div className="title">
           <h1>Recipe Carbon Footprints</h1>
         </div>
         <div>
-          <input></input>
+          <input onChange={(e) => handleInputChange(e)} style={{ border:"2px solid black" }}></input>
         </div>
           <div className="texts-container">
             {
               recipeFootprintData.map(recipe =>
                 <div className="text-wrapper">
                   <p className="card" style={{ background: `hsl(${recipe.colour}, 100%, 44%)` }}>
-                    <div style={{fontSize: "3vw"}}>
+                    <div style={{fontSize: "4vw"}}>
                       {recipe.name}
                     </div>
-                    <div style={{ fontSize: "2vw" }}>
-                      Total: {recipe.footprint}kg CO2 
-                      Per Serving: {recipe.footprintPerServing}kg CO2
+                    <div style={{ fontSize: "4vw" }}>
+                      {/* Total: {recipe.footprint}kg CO2 
+                      <hr/> */}
+                      {recipe.footprintPerServing}kg CO2
                     </div>
                   </p>
                 </div>
