@@ -7,7 +7,8 @@ class App extends Component {
     recipes: [],
     ingredientData: [],
     recipeFootprintData: [],
-    filter: ''
+    filter: '',
+    noResults: false
   }
 
 
@@ -24,7 +25,6 @@ class App extends Component {
   }
 
   componentDidMount(){
-    this.getRecipes()
     this.getIngredientData()
   }
 
@@ -57,6 +57,7 @@ class App extends Component {
     const recipes = [...this.state.recipes]
     const recipeFootprints = recipes.map(recipe => this.findIngredientsFootprint(recipe))
     this.setState({ recipeFootprintData: recipeFootprints })
+    this.state.recipeFootprintData.length < 1 ? this.setState({ noResults: true }) : this.setState({ noResults: false })
   }
 
   setColour = (footprintPerServing) => {
@@ -85,19 +86,22 @@ class App extends Component {
 
 
   render() {
-    const { recipeFootprintData } = this.state
+    const { recipeFootprintData, noResults } = this.state
     const { handleChange, handleSubmit } = this
 
     return (
       <div className="App">
         <div className="title">
-          <h1>Recipe Carbon Footprints</h1>
+          <h1>Per Serving Carbon Output of Recipes</h1>
         </div>
         <div>
           <input onChange={(e) => handleChange(e)} onKeyPress={(e) => handleSubmit(e)} style={{ border:"2px solid black" }}></input>
         </div>
           <div className="texts-container">
-            {
+            { noResults
+              ? 
+              <div position="absolute">No Results</div>
+              :
               recipeFootprintData.map(recipe =>
                 <div className="text-wrapper">
                   <p className="card" style={{ background: `hsl(${recipe.colour}, 100%, 44%)` }}>
