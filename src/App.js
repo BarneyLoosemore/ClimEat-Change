@@ -12,7 +12,7 @@ class App extends Component {
 
 
   getRecipes = () => {
-    fetch(`https://api.edamam.com/search?q=${this.state.filter}&app_id=632e253a&app_key=6666a09ef074ac455f9590ec38d9228e`)
+    fetch(`https://api.edamam.com/search?q=${this.state.filter}&app_id=632e253a&app_key=6666a09ef074ac455f9590ec38d9228e&from=0&to=9`)
       .then(r => r.json())
       .then(recipes => this.findFootprintOfRecipes(recipes.hits))
   }
@@ -29,9 +29,6 @@ class App extends Component {
   }
 
   componentDidUpdate(){
-    if(this.state.filter.length > 2){
-      this.getRecipes()
-    }
   }
 
   findIndividualIngredientFootprint = (ingredient) => {
@@ -76,15 +73,20 @@ class App extends Component {
     }
   }
 
-  handleInputChange = (event) => {
+  handleChange = (event) => {
     this.setState({ filter: event.target.value })
   }
 
+  handleSubmit = (event) => {
+    if (event.which === 13){
+      this.getRecipes()
+    }
+  }
 
 
   render() {
     const { recipeFootprintData } = this.state
-    const { handleInputChange } = this
+    const { handleChange, handleSubmit } = this
 
     return (
       <div className="App">
@@ -92,17 +94,17 @@ class App extends Component {
           <h1>Recipe Carbon Footprints</h1>
         </div>
         <div>
-          <input onChange={(e) => handleInputChange(e)} style={{ border:"2px solid black" }}></input>
+          <input onChange={(e) => handleChange(e)} onKeyPress={(e) => handleSubmit(e)} style={{ border:"2px solid black" }}></input>
         </div>
           <div className="texts-container">
             {
               recipeFootprintData.map(recipe =>
                 <div className="text-wrapper">
                   <p className="card" style={{ background: `hsl(${recipe.colour}, 100%, 44%)` }}>
-                    <div style={{fontSize: "4vw"}}>
+                    <div style={{fontSize: "4vw", paddingBottom: "8%" }}>
                       {recipe.name}
                     </div>
-                    <div style={{ fontSize: "4vw" }}>
+                    <div style={{ fontSize: "4vw", paddingBottom: "8%" }}>
                       {/* Total: {recipe.footprint}kg CO2 
                       <hr/> */}
                       {recipe.footprintPerServing}kg CO2
