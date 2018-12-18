@@ -1,0 +1,470 @@
+[
+ {
+   "food_name": "Onion",
+   "kg_CO2_per_kg_produce": 0.17
+ },
+ {
+   "food_name": "Celery",
+   "kg_CO2_per_kg_produce": 0.18
+ },
+ {
+   "food_name": "Potato",
+   "kg_CO2_per_kg_produce": 0.18
+ },
+ {
+   "food_name": "Carrot",
+   "kg_CO2_per_kg_produce": 0.2
+ },
+ {
+   "food_name": "Courgette",
+   "kg_CO2_per_kg_produce": 0.21
+ },
+ {
+   "food_name": "Cucumber",
+   "kg_CO2_per_kg_produce": 0.23
+ },
+ {
+   "food_name": "Beetroot",
+   "kg_CO2_per_kg_produce": 0.24
+ },
+ {
+   "food_name": "Pumpkin",
+   "kg_CO2_per_kg_produce": 0.25
+ },
+ {
+   "food_name": "Melon",
+   "kg_CO2_per_kg_produce": 0.25
+ },
+ {
+   "food_name": "White Bean",
+   "kg_CO2_per_kg_produce": 0.26
+ },
+ {
+   "food_name": "Lemon",
+   "kg_CO2_per_kg_produce": 0.26
+ },
+ {
+   "food_name": "Lime",
+   "kg_CO2_per_kg_produce": 0.26
+ },
+ {
+   "food_name": "Mushroom",
+   "kg_CO2_per_kg_produce": 0.27
+ },
+ {
+   "food_name": "Guava ",
+   "kg_CO2_per_kg_produce": 0.28
+ },
+ {
+   "food_name": "Apple",
+   "kg_CO2_per_kg_produce": 0.29
+ },
+ {
+   "food_name": "Swede",
+   "kg_CO2_per_kg_produce": 0.29
+ },
+ {
+   "food_name": "Pear",
+   "kg_CO2_per_kg_produce": 0.31
+ },
+ {
+   "food_name": "Green Bean",
+   "kg_CO2_per_kg_produce": 0.31
+ },
+ {
+   "food_name": "Watermelon",
+   "kg_CO2_per_kg_produce": 0.32
+ },
+ {
+   "food_name": "Date",
+   "kg_CO2_per_kg_produce": 0.32
+ },
+ {
+   "food_name": "Orange",
+   "kg_CO2_per_kg_produce": 0.33
+ },
+ {
+   "food_name": "Kiwi",
+   "kg_CO2_per_kg_produce": 0.36
+ },
+ {
+   "food_name": "Cauliflower",
+   "kg_CO2_per_kg_produce": 0.36
+ },
+ {
+   "food_name": "Broccoli",
+   "kg_CO2_per_kg_produce": 0.36
+ },
+ {
+   "food_name": "Grape",
+   "kg_CO2_per_kg_produce": 0.37
+ },
+ {
+   "food_name": "Oats",
+   "kg_CO2_per_kg_produce": 0.38
+ },
+ {
+   "food_name": "Rye",
+   "kg_CO2_per_kg_produce": 0.38
+ },
+ {
+   "food_name": "Pea",
+   "kg_CO2_per_kg_produce": 0.38
+ },
+ {
+   "food_name": "Cherry",
+   "kg_CO2_per_kg_produce": 0.39
+ },
+ {
+   "food_name": "Cherries",
+   "kg_CO2_per_kg_produce": 0.39
+ },
+ {
+   "food_name": "Butter Bean",
+   "kg_CO2_per_kg_produce": 0.39
+ },
+ {
+   "food_name": "Almond Milk",
+   "kg_CO2_per_kg_produce": 0.42
+ },
+ {
+   "food_name": "Coconut Milk",
+   "kg_CO2_per_kg_produce": 0.42
+ },
+ {
+   "food_name": "Peach",
+   "kg_CO2_per_kg_produce": 0.43
+ },
+ {
+   "food_name": "Nectarine",
+   "kg_CO2_per_kg_produce": 0.43
+ },
+ {
+   "food_name": "Fig",
+   "kg_CO2_per_kg_produce": 0.43
+ },
+ {
+   "food_name": "Barley",
+   "kg_CO2_per_kg_produce": 0.43
+ },
+ {
+   "food_name": "Apricot",
+   "kg_CO2_per_kg_produce": 0.43
+ },
+ {
+   "food_name": "Chestnut",
+   "kg_CO2_per_kg_produce": 0.43
+ },
+ {
+   "food_name": "Bean",
+   "kg_CO2_per_kg_produce": 0.43
+ },
+ {
+   "food_name": "Madarin",
+   "kg_CO2_per_kg_produce": 0.45
+ },
+ {
+   "food_name": "Tomato",
+   "kg_CO2_per_kg_produce": 0.45
+ },
+ {
+   "food_name": "Maize",
+   "kg_CO2_per_kg_produce": 0.47
+ },
+ {
+   "food_name": "Corn",
+   "kg_CO2_per_kg_produce": 0.47
+ },
+ {
+   "food_name": "Fennel",
+   "kg_CO2_per_kg_produce": 0.48
+ },
+ {
+   "food_name": "Artichoke",
+   "kg_CO2_per_kg_produce": 0.48
+ },
+ {
+   "food_name": "Cowpeas",
+   "kg_CO2_per_kg_produce": 0.49
+ },
+ {
+   "food_name": "Soybean",
+   "kg_CO2_per_kg_produce": 0.49
+ },
+ {
+   "food_name": "Pineapple",
+   "kg_CO2_per_kg_produce": 0.5
+ },
+ {
+   "food_name": "Grapefruit",
+   "kg_CO2_per_kg_produce": 0.51
+ },
+ {
+   "food_name": "Tangerine",
+   "kg_CO2_per_kg_produce": 0.51
+ },
+ {
+   "food_name": "Wheat",
+   "kg_CO2_per_kg_produce": 0.52
+ },
+ {
+   "food_name": "Spinach",
+   "kg_CO2_per_kg_produce": 0.54
+ },
+ {
+   "food_name": "Garlic",
+   "kg_CO2_per_kg_produce": 0.57
+ },
+ {
+   "food_name": "Strawberry",
+   "kg_CO2_per_kg_produce": 0.58
+ },
+ {
+   "food_name": "Strawberries",
+   "kg_CO2_per_kg_produce": 0.58
+ },
+ {
+   "food_name": "Olive",
+   "kg_CO2_per_kg_produce": 0.63
+ },
+ {
+   "food_name": "Peppers",
+   "kg_CO2_per_kg_produce": 0.66
+ },
+ {
+   "food_name": "Pinto Beans",
+   "kg_CO2_per_kg_produce": 0.73
+ },
+ {
+   "food_name": "Soy Milk",
+   "kg_CO2_per_kg_produce": 0.75
+ },
+ {
+   "food_name": "Runner Bean",
+   "kg_CO2_per_kg_produce": 0.75
+ },
+ {
+   "food_name": "Chickpeas",
+   "kg_CO2_per_kg_produce": 0.77
+ },
+ {
+   "food_name": "Asparagus",
+   "kg_CO2_per_kg_produce": 0.83
+ },
+ {
+   "food_name": "Peanut",
+   "kg_CO2_per_kg_produce": 0.83
+ },
+ {
+   "food_name": "Raspberry",
+   "kg_CO2_per_kg_produce": 0.84
+ },
+ {
+   "food_name": "Raspberries",
+   "kg_CO2_per_kg_produce": 0.84
+ },
+ {
+   "food_name": "Currant",
+   "kg_CO2_per_kg_produce": 0.84
+ },
+ {
+   "food_name": "Sesame Seed",
+   "kg_CO2_per_kg_produce": 0.88
+ },
+ {
+   "food_name": "Ginger",
+   "kg_CO2_per_kg_produce": 0.88
+ },
+ {
+   "food_name": "Cranberries",
+   "kg_CO2_per_kg_produce": 0.92
+ },
+ {
+   "food_name": "Blueberries",
+   "kg_CO2_per_kg_produce": 0.92
+ },
+ {
+   "food_name": "Hazelnut",
+   "kg_CO2_per_kg_produce": 0.97
+ },
+ {
+   "food_name": "Lentil",
+   "kg_CO2_per_kg_produce": 1.03
+ },
+ {
+   "food_name": "Quinoa",
+   "kg_CO2_per_kg_produce": 1.15
+ },
+ {
+   "food_name": "Herring",
+   "kg_CO2_per_kg_produce": 1.16
+ },
+ {
+   "food_name": "Milk",
+   "kg_CO2_per_kg_produce": 1.29
+ },
+ {
+   "food_name": "Cows Milk",
+   "kg_CO2_per_kg_produce": 1.29
+ },
+ {
+   "food_name": "Avocado",
+   "kg_CO2_per_kg_produce": 1.3
+ },
+ {
+   "food_name": "Yoghurt",
+   "kg_CO2_per_kg_produce": 1.31
+ },
+ {
+   "food_name": "Aubergine",
+   "kg_CO2_per_kg_produce": 1.35
+ },
+ {
+   "food_name": "Sunflower Seeds",
+   "kg_CO2_per_kg_produce": 1.41
+ },
+ {
+   "food_name": "Cashew Nut",
+   "kg_CO2_per_kg_produce": 1.44
+ },
+ {
+   "food_name": "Walnut",
+   "kg_CO2_per_kg_produce": 1.51
+ },
+ {
+   "food_name": "Pistachio",
+   "kg_CO2_per_kg_produce": 1.53
+ },
+ {
+   "food_name": "Almond",
+   "kg_CO2_per_kg_produce": 1.54
+ },
+ {
+   "food_name": "Pollock",
+   "kg_CO2_per_kg_produce": 1.6
+ },
+ {
+   "food_name": "Carp",
+   "kg_CO2_per_kg_produce": 1.76
+ },
+ {
+   "food_name": "Mackerel",
+   "kg_CO2_per_kg_produce": 1.8
+ },
+ {
+   "food_name": "Mustard Seed",
+   "kg_CO2_per_kg_produce": 2.09
+ },
+ {
+   "food_name": "Tuna",
+   "kg_CO2_per_kg_produce": 2.15
+ },
+ {
+   "food_name": "Rice",
+   "kg_CO2_per_kg_produce": 2.55
+ },
+ {
+   "food_name": "Duck",
+   "kg_CO2_per_kg_produce": 3.09
+ },
+ {
+   "food_name": "Sea Bass",
+   "kg_CO2_per_kg_produce": 3.27
+ },
+ {
+   "food_name": "Haddock",
+   "kg_CO2_per_kg_produce": 3.41
+ },
+ {
+   "food_name": "Egg",
+   "kg_CO2_per_kg_produce": 3.46
+ },
+ {
+   "food_name": "Salmon",
+   "kg_CO2_per_kg_produce": 3.47
+ },
+ {
+   "food_name": "Cod",
+   "kg_CO2_per_kg_produce": 3.51
+ },
+ {
+   "food_name": "Chicken",
+   "kg_CO2_per_kg_produce": 3.65
+ },
+ {
+   "food_name": "Eel",
+   "kg_CO2_per_kg_produce": 3.88
+ },
+ {
+   "food_name": "Trout",
+   "kg_CO2_per_kg_produce": 4.2
+ },
+ {
+   "food_name": "Rabbit",
+   "kg_CO2_per_kg_produce": 4.7
+ },
+ {
+   "food_name": "Cream",
+   "kg_CO2_per_kg_produce": 5.64
+ },
+ {
+   "food_name": "Pork",
+   "kg_CO2_per_kg_produce": 5.77
+ },
+ {
+   "food_name": "Octopus",
+   "kg_CO2_per_kg_produce": 7.13
+ },
+ {
+   "food_name": "Squid",
+   "kg_CO2_per_kg_produce": 7.13
+ },
+ {
+   "food_name": "Turkey",
+   "kg_CO2_per_kg_produce": 7.17
+ },
+ {
+   "food_name": "Shrimp",
+   "kg_CO2_per_kg_produce": 7.8
+ },
+ {
+   "food_name": "Prawn",
+   "kg_CO2_per_kg_produce": 7.8
+ },
+ {
+   "food_name": "Cheese",
+   "kg_CO2_per_kg_produce": 8.55
+ },
+ {
+   "food_name": "Butter",
+   "kg_CO2_per_kg_produce": 9.25
+ },
+ {
+   "food_name": "Mussel",
+   "kg_CO2_per_kg_produce": 9.51
+ },
+ {
+   "food_name": "Hake",
+   "kg_CO2_per_kg_produce": 9.77
+ },
+ {
+   "food_name": "Turbot",
+   "kg_CO2_per_kg_produce": 14.51
+ },
+ {
+   "food_name": "Sole",
+   "kg_CO2_per_kg_produce": 20.86
+ },
+ {
+   "food_name": "Lamb",
+   "kg_CO2_per_kg_produce": 25.58
+ },
+ {
+   "food_name": "Beef",
+   "kg_CO2_per_kg_produce": 26.61
+ },
+ {
+   "food_name": "Lobster",
+   "kg_CO2_per_kg_produce": 27.8
+ }
+]
