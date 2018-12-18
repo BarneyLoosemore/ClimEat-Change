@@ -8,12 +8,7 @@
 }
 
 .text-wrapper {
-  /* padding: 20px; */
   position: relative;
-  /* margin-top: 30%;
-  margin-bottom: 70%; */
-  /* padding-top: 45%;
-  padding-bottom: 45%; */
   padding-left: 12%;
   padding-right: 12%;
 }
@@ -29,18 +24,43 @@
 }
 
 .card {
-  /* padding-bottom: 50%; */
-  /* position: relative; */
-  /* top: 15%; */
   background: green;
   padding-top: 45%;
-  padding-bottom: 60%;
-  /* margin-bottom: 20%; */
+  /* padding-bottom: 60%; */
+  padding-bottom: 50%;
   height: 12vw;
   color: white;
 }
 
 .title {
   text-align: center;
-  margin-bottom: 7%;
+  font-size: 7vw;
+}
+
+.search-container {
+  padding-bottom: 3vw;
+}
+
+.search-box {
+  height: 5vw;
+  width: 50vw;
+  border: 1px solid black;
+}
+
+/* responsive design */
+
+/* Mobile Styles */
+@media only screen and (max-width: 960px) {
+  body {
+    /* background-color: #F09A9D; */
+    /* Red */
+  }
+}
+
+/* Desktop Styles */
+@media only screen and (min-width: 961px) {
+  body {
+    background-color: #B2D6FF;
+    /* Blue */
+  }
 }

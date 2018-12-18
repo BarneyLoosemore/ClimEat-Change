@@ -48,7 +48,11 @@ class App extends Component {
     const summedIngredientsCO2Footprint = ingredientsCO2Footprint.reduce((a, b) => a + b)
     const summedIngredientsCO2FootprintRounded = summedIngredientsCO2Footprint.toFixed(2)
     const footprintPerServing = (summedIngredientsCO2Footprint / recipe.yield).toFixed(2)
-    return {name: recipe.label, footprint: summedIngredientsCO2FootprintRounded, footprintPerServing: footprintPerServing, colour: this.setColour(footprintPerServing)}
+    return {
+      name: recipe.label,
+      footprint: summedIngredientsCO2FootprintRounded,
+      footprintPerServing: footprintPerServing, 
+      colour: this.setColour(footprintPerServing)}
   }
 
   findFootprintOfRecipes = (fetchedRecipes) => {
@@ -97,18 +101,18 @@ class App extends Component {
     return (
       <div className="App">
         <div className="title">
-          <h1>Per Serving Carbon Output of Recipes</h1>
+          <p>Per Serving Carbon Output of Recipes</p>
         </div>
-        <div>
-          <input onChange={(e) => handleChange(e)} onKeyPress={(e) => handleSubmit(e)} style={{ border:"2px solid black" }}></input>
+        <div className="search-container">
+          <input className="search-box" onChange={(e) => handleChange(e)} onKeyPress={(e) => handleSubmit(e)}></input>
         </div>
-        <div>
+        {/* <div>
             {
               loadingSpinner
               ? <ClipLoader />
               : null
             }
-        </div>
+        </div> */}
           <div className="texts-container">
             { noResults
               ? 
@@ -117,8 +121,8 @@ class App extends Component {
               recipeFootprintData.map(recipe =>
                 <div className="text-wrapper">
                   <p className="card" style={{ background: `hsl(${recipe.colour}, 100%, 44%)` }}>
-                    <div style={{fontSize: "4vw", paddingBottom: "8%" }}>
-                      {recipe.name}
+                    <div style={{fontSize: "3.5vw", paddingBottom: "8%" }}>
+                      {recipe.name.length > 35 ? `${recipe.name.slice(0, 35)}...` : recipe.name}
                     </div>
                     <div style={{ fontSize: "4vw", paddingBottom: "8%" }}>
                       {recipe.footprintPerServing}kg CO2
