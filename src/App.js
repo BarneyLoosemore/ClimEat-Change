@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 import RecipeCard from './RecipeCard.js'
 import NavBar from './NavBar.js'
+import SearchBar from './SearchBar.js'
 
 
 class App extends Component {
@@ -127,7 +128,9 @@ class App extends Component {
               )
             }
         </div> */}
-        <NavBar/>
+        {/* <NavBar/> */}
+        12.328125
+        <SearchBar/>
         <div className='card-containers'>
           <RecipeCard/>
           <RecipeCard/>

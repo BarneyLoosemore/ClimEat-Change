@@ -1,17 +1,16 @@
 import React, { Component } from 'react'
 import './App.css'
-import SearchBar from './SearchBar.js'
 
-class Header extends Component {
+class NavBar extends Component {
 
     render(){
         return(
-            <div className='nav-bar'>
-                <SearchBar/>
+            <div>
+                NavBar
             </div>
         )
     }
 
 }
 
-export default Header
+export default NavBar

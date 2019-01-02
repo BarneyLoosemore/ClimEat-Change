@@ -13,7 +13,7 @@ class RecipeCard extends Component {
                 </div>
                 <div className='text-and-symbol-wrapper'>
                     <div className='recipe-text'>
-                        <h1>Penne Pasta</h1>
+                        <h1>Penne Pasta hahaha</h1>
                     </div>
                     <div className='emission-symbol'>
                         13KG
