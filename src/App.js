@@ -92,14 +92,14 @@ class App extends Component {
     }
   }
 
-  handleMouseOver = (recipe) => {
+  handleOnCardClick = () => {
 
   }
 
 
   render() {
     const { recipeFootprintData, noResults, loadingSpinner } = this.state
-    const { handleChange, handleSubmit, handleMouseOver } = this
+    const { handleChange, handleSubmit, handleMouseOver, handleOnCardClick } = this
 
     return (
       <div className="App">
@@ -128,11 +128,13 @@ class App extends Component {
               )
             }
         </div> */}
-        {/* <NavBar/> */}
-        12.328125
+        {
+          
+        }
+        <NavBar/>
         <SearchBar/>
         <div className='card-containers'>
-          <RecipeCard/>
+          <RecipeCard onCardClick={handleOnCardClick} />
           <RecipeCard/>
           <RecipeCard/>
         </div>

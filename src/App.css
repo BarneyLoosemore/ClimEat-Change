@@ -57,11 +57,13 @@
   padding-top: 18vw;
 }
 
+.nav-bar {
+  height: 18vw;
+}
+
 .search-box-container {
   height: 18vw;
   background: black;
-  /* position: fixed; */
-  /* margin-bottom: 50px; */
   width: 100%;
 }
 
@@ -71,17 +73,19 @@
 }
 
 .sticky+.card-containers {
-  padding-top: 35vw;
+  padding-top: 36vw;
 }
 
 .search-input {
   height: 10vw;
-  width: 50vw;
+  width: 65vw;
   margin-top: 3vw;
   font-family: OverPass;
   text-align: center;
   font-size: 4.5vw;
 }
+
+
 
 /* responsive design */
 
