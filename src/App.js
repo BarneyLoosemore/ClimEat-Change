@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
-import { ClipLoader } from 'react-spinners';
+import './RecipeCard.js'
+
 
 class App extends Component {
 
@@ -106,13 +107,6 @@ class App extends Component {
         <div className="search-container">
           <input className="search-box" onChange={(e) => handleChange(e)} onKeyPress={(e) => handleSubmit(e)}></input>
         </div>
-        {/* <div>
-            {
-              loadingSpinner
-              ? <ClipLoader />
-              : null
-            }
-        </div> */}
           <div className="texts-container">
             { noResults
               ? 
