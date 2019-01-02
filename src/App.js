@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
-import './RecipeCard.js'
+import RecipeCard from './RecipeCard.js'
+import NavBar from './NavBar.js'
 
 
 class App extends Component {
@@ -101,7 +102,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <div className="title">
+        {/* <div className="title">
           <p>Per Serving Carbon Output of Recipes</p>
         </div>
         <div className="search-container">
@@ -125,6 +126,12 @@ class App extends Component {
                 </div>
               )
             }
+        </div> */}
+        <NavBar/>
+        <div className='card-containers'>
+          <RecipeCard/>
+          <RecipeCard/>
+          <RecipeCard/>
         </div>
       </div>
 

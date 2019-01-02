@@ -47,6 +47,33 @@
   border: 1px solid black;
 }
 
+
+
+
+
+/* NEWEST STYLING */
+
+.card-containers {
+  padding-top: 18vw;
+}
+
+.nav-bar {
+  height: 18vw;
+  background: black;
+  position: fixed;
+  /* margin-bottom: 50px; */
+  width: 100%;
+}
+
+.search-input {
+  height: 10vw;
+  width: 50vw;
+  margin-top: 3vw;
+  font-family: OverPass;
+  text-align: center;
+  font-size: 4.5vw;
+}
+
 /* responsive design */
 
 /* Mobile Styles */
