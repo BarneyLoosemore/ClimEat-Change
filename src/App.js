@@ -3,6 +3,7 @@ import './App.css'
 import RecipeCard from './RecipeCard.js'
 import NavBar from './NavBar.js'
 import SearchBar from './SearchBar.js'
+import SelectedRecipe from './SelectedRecipe.js'
 
 
 class App extends Component {
@@ -13,7 +14,8 @@ class App extends Component {
     recipeFootprintData: [],
     filter: '',
     noResults: false,
-    loadingSpinner: false
+    loadingSpinner: false,
+    selectedRecipe: ''
   }
 
 
@@ -93,12 +95,13 @@ class App extends Component {
   }
 
   handleOnCardClick = () => {
-
+    this.setState({ selectedRecipe: 'uh' })
+    console.log('clicked')
   }
 
 
   render() {
-    const { recipeFootprintData, noResults, loadingSpinner } = this.state
+    const { recipeFootprintData, noResults, loadingSpinner, selectedRecipe } = this.state
     const { handleChange, handleSubmit, handleMouseOver, handleOnCardClick } = this
 
     return (
@@ -128,16 +131,20 @@ class App extends Component {
               )
             }
         </div> */}
-        {
-          
-        }
         <NavBar/>
-        <SearchBar/>
-        <div className='card-containers'>
-          <RecipeCard onCardClick={handleOnCardClick} />
-          <RecipeCard/>
-          <RecipeCard/>
+        {
+          selectedRecipe !== '' 
+          ? <SelectedRecipe/>
+          :
+        <div>
+          <SearchBar/>
+          <div className='card-containers'>
+            <RecipeCard handleOnCardClick={handleOnCardClick} />
+            <RecipeCard/>
+            <RecipeCard/>
+          </div>
         </div>
+        }
       </div>
 
 

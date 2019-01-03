@@ -58,7 +58,37 @@
 }
 
 .nav-bar {
-  height: 18vw;
+  display: block;
+  text-align: center;
+  /* padding: 4vw; */
+  padding-top: 3vw;
+  padding-bottom: 1vw;
+  text-decoration: none;
+  font-family: OverPassBold;
+  color: white;
+  background: #3ebf19f0;
+  font-size: 8vw;
+  display: flex;
+}
+
+.clim-eat {
+  margin-right: 20vw;
+  margin-left: 5vw;
+}
+
+.other {
+  font-size: 4vw;
+  margin-left: 4vw;
+  margin-top: 2vw;
+  display: flex;
+}
+
+.about {
+
+}
+
+.ingredients {
+
 }
 
 .search-box-container {
