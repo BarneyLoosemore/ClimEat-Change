@@ -10,8 +10,10 @@ class NavBar extends Component {
                 <div className='clim-eat'>
                     ClimEat
                 </div>
-                <div className='other'>
-                    <div/>
+                <div className='nav-menu'>
+                    <div className='menu-bar'></div>
+                    <div className='menu-bar'></div>
+                    <div className='menu-bar'></div>
                 </div>
                     
             </div>

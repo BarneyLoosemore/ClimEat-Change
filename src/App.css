@@ -60,9 +60,9 @@
 .nav-bar {
   display: block;
   text-align: center;
-  /* padding: 4vw; */
-  padding-top: 3vw;
-  padding-bottom: 1vw;
+  padding: 2vw;
+  /* padding-top: 3vw;
+  padding-bottom: 1vw; */
   text-decoration: none;
   font-family: OverPassBold;
   color: white;
@@ -76,19 +76,15 @@
   margin-left: 5vw;
 }
 
-.other {
-  font-size: 4vw;
-  margin-left: 4vw;
-  margin-top: 2vw;
-  display: flex;
+.menu-bar {
+  width: 35px;
+  height: 5px;
+  background-color: black;
+  margin: 6px 0;
 }
 
-.about {
-
-}
-
-.ingredients {
-
+.nav-menu {
+  margin-left: 30vw;
 }
 
 .search-box-container {
