@@ -1,21 +1,25 @@
 import React, { Component } from 'react'
 import './App.css'
-import RecipeCard from './RecipeCard.js'
 import NavBar from './NavBar.js'
 import SearchBar from './SearchBar.js'
 import SelectedRecipe from './SelectedRecipe.js'
+import IngredientContainer from './IngredientContainer.js'
+import SelectedIngredient from './SelectedIngredient.js'
+import RecipeCardContainer from './RecipeCardContainer.js'
 
 
 class App extends Component {
 
   state = {
     recipes: [],
+    ingredients: [],
     ingredientData: [],
     recipeFootprintData: [],
-    filter: '',
     noResults: false,
     loadingSpinner: false,
-    selectedRecipe: ''
+    selectedRecipe: '',
+    ingredientSearch: false,
+    selectedIngredient: ''
   }
 
 
@@ -99,10 +103,44 @@ class App extends Component {
     console.log('clicked')
   }
 
+  handleLogoClick = () => {
+    this.setState({ selectedRecipe: '' })
+    this.setState({ ingredientSearch: false })
+  }
+
+  handleIngredientSearchClick = () => {
+    this.setState({ ingredientSearch: true })
+  }
+
+  handleRecipeAndIngredientFilterChange = (filter) => {
+    if (this.state.ingredientSearch === true){
+      // set the ingredients that include the filter
+    } else {
+      // set the recipes that include the filter
+    }
+  }
+
 
   render() {
-    const { recipeFootprintData, noResults, loadingSpinner, selectedRecipe } = this.state
-    const { handleChange, handleSubmit, handleMouseOver, handleOnCardClick } = this
+    const { 
+      recipes, 
+      ingredients,
+      recipeFootprintData, 
+      noResults, 
+      loadingSpinner, 
+      selectedRecipe, 
+      ingredientSearch, 
+      selectedIngredient, 
+      recipeAndIngredientFilter 
+          } = this.state
+    const { 
+      handleChange, 
+      handleSubmit, 
+      handleMouseOver, 
+      handleOnCardClick, 
+      handleLogoClick,
+      handleIngredientSearchClick
+          } = this
 
     return (
       <div className="App">
@@ -131,19 +169,24 @@ class App extends Component {
               )
             }
         </div> */}
-        <NavBar/>
+        <NavBar handleLogoClick={handleLogoClick} handleIngredientSearchClick={handleIngredientSearchClick}/>
         {
-          selectedRecipe !== '' 
-          ? <SelectedRecipe/>
+          ingredientSearch 
+          ? selectedIngredient !== ''
+            ? <SelectedIngredient/>
+            : <IngredientContainer/>
           :
-        <div>
-          <SearchBar/>
-          <div className='card-containers'>
-            <RecipeCard handleOnCardClick={handleOnCardClick} />
-            <RecipeCard/>
-            <RecipeCard/>
-          </div>
-        </div>
+            selectedRecipe !== '' 
+            ? <SelectedRecipe/>
+            :
+            <div>
+              <SearchBar placeholder={"Search for a recipe.."} />
+              <div className='card-containers'>
+                {
+                  <RecipeCardContainer recipes={recipes} handleOnCardClick={handleOnCardClick}/>
+                }
+              </div>
+            </div>
         }
       </div>
 

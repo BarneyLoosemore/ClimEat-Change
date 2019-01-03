@@ -24,12 +24,18 @@ class NavBar extends Component {
 
     }
 
+    handleIngredientSearchClickAndCloseMenu = () => {
+        this.handleMenuBarClick()
+        this.props.handleIngredientSearchClick()
+    }
+
     render(){
-        const { handleMenuBarClick } = this
+        const { handleMenuBarClick, handleIngredientSearchClickAndCloseMenu } = this
+        const{ handleLogoClick } = this.props
         return(
             <div>
                 <div className='nav-bar'>
-                    <div className='clim-eat'>
+                    <div onClick={handleLogoClick} className='clim-eat'>
                         ClimEat
                     </div>
                     <div onClick={ e => handleMenuBarClick(e) } className='nav-menu'>
@@ -41,9 +47,9 @@ class NavBar extends Component {
                 </div>
 
                 <div className='nav-bar-menu'>
-                    <div className='nav-bar-menu-item'>Ingredient Search</div>
+                    <div onClick={handleIngredientSearchClickAndCloseMenu} className='nav-bar-menu-item'>Ingredient Search</div>
                         <hr className='divider'/>
-                    <div className ='nav-bar-menu-item'> Statistics </div>
+                    <div className ='nav-bar-menu-item'>Statistics</div>
                         <hr className='divider'/>
                     <div className='nav-bar-menu-item'>About</div>
                 </div>

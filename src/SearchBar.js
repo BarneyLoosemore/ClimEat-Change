@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 
 
-class SearchBar extends React.Component {
+class SearchBar extends Component {
 
     handleClick = (e) => {
         e.target.placeholder = ''
@@ -10,7 +10,8 @@ class SearchBar extends React.Component {
     }
 
     handleOffClick = (e) => {
-        e.target.placeholder = "Search for a recipe.."
+        // e.target.placeholder = "Search for a recipe.."
+        e.target.placeholder = this.props.placeholder
     }
 
     handleScroll = () => {
@@ -27,7 +28,6 @@ class SearchBar extends React.Component {
                 search_bar.classList.remove("sticky");
             }
         }
-            // console.log(document.querySelector('.search-box-container').getBoundingClientRect())
     }
 
     render(){
@@ -35,7 +35,7 @@ class SearchBar extends React.Component {
         return(
             <div className='search-box-container' onScroll={ e => handleScroll(e) }>
                 <div>
-                    <input class='search-input' type="text" onClick={ e => handleClick(e) } onBlur={ e => handleOffClick(e) } placeholder="Search for a recipe.."/>
+                    <input class='search-input' type="text" onClick={ e => handleClick(e) } onBlur={ e => handleOffClick(e) } placeholder={this.props.placeholder} />
                 </div>
             </div>
         )
