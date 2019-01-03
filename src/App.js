@@ -177,7 +177,7 @@ class App extends Component {
             : <IngredientContainer/>
           :
             selectedRecipe !== '' 
-            ? <SelectedRecipe/>
+            ? <SelectedRecipe handleOnCardClick={handleOnCardClick}/>
             :
             <div>
               <SearchBar placeholder={"Search for a recipe.."} />

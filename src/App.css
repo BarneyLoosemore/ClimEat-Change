@@ -124,6 +124,11 @@
   font-size: 4.5vw;
 }
 
+.ingredients-tag {
+  font-size: 2em;
+  font-family: OverPass;
+}
+
 
 
 /* responsive design */
