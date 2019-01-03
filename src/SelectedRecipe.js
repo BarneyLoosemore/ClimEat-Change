@@ -5,10 +5,10 @@ import RecipeCard from './RecipeCard.js'
 class SelectedRecipe extends Component {
 
     render(){
-        const { handleOnCardClick } = this.props
+        const { handleOnCardClick, recipe } = this.props
         return(
             <div className=''>
-                <RecipeCard handleOnCardClick={handleOnCardClick}/>
+                <RecipeCard recipe={recipe} handleOnCardClick={handleOnCardClick}/>
                 <hr/>
                 <div className="ingredients-tag">
                     Ingredients

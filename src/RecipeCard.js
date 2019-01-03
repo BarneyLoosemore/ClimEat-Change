@@ -4,17 +4,34 @@ import './recipe_card.css'
 
 class RecipeCard extends Component {
 
+    findFontSize = () => {
+        const name = this.props.recipe.attributes.name
+        console.log(name)
+        if(name.length > 18){
+            return "1.5em"
+        } else if(name.length > 25){
+            return "1em"
+        } else {
+            return "2em"
+        }
+    }
+
     render(){
-        const { handleOnCardClick } = this.props
+        const { handleOnCardClick, recipe } = this.props
         return(
             <div className='card-wrapper'>
                 <div>
                     <div className='divider-wrapper'/>
-                    <img onClick={() => handleOnCardClick()} className='image-wrapper' src='../penne_pasta.jpg' alt='penne pasta image' flexWrap='wrap'></img>
+                    <img onClick={() => handleOnCardClick(recipe)} className='image-wrapper' src={recipe.attributes["image-url"]} alt='penne pasta image' flexWrap='wrap'></img>
                 </div>
                 <div className='text-and-symbol-wrapper'>
                     <div className='recipe-text'>
-                        <h1>Penne Pasta hahaha</h1>
+                        <h2>{
+                                recipe.attributes.name.length > 25 
+                                ? `${recipe.attributes.name.slice(0, 25)}..`
+                                : recipe.attributes.name
+                            }
+                        </h2> 
                     </div>
                     <div className='emission-symbol'>
                         13KG

@@ -17,6 +17,13 @@ class SearchBar extends Component {
     handleScroll = () => {
         console.log(document.querySelector('.search-box-container').getBoundingClientRect())
     }
+
+    handleKeyPress = (e) => {
+        if(e.key === "Enter"){
+            console.log("Submitted")
+            this.props.handleSubmit()
+        }
+    }
     
     componentDidMount(){
         let search_bar = document.querySelector('.search-box-container')
@@ -31,11 +38,12 @@ class SearchBar extends Component {
     }
 
     render(){
-        const { handleClick, handleOffClick, handleScroll } = this
+        const { handleClick, handleOffClick, handleScroll, handleKeyPress } = this
+        const { handleChange } = this.props
         return(
             <div className='search-box-container' onScroll={ e => handleScroll(e) }>
                 <div>
-                    <input class='search-input' type="text" onClick={ e => handleClick(e) } onBlur={ e => handleOffClick(e) } placeholder={this.props.placeholder} />
+                    <input class='search-input' type="text" onKeyPress={e => handleKeyPress(e)} onChange={e => handleChange(e.target.value)} onClick={ e => handleClick(e) } onBlur={ e => handleOffClick(e) } placeholder={this.props.placeholder} />
                 </div>
             </div>
         )

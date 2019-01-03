@@ -15,19 +15,35 @@ class App extends Component {
     ingredients: [],
     ingredientData: [],
     recipeFootprintData: [],
-    noResults: false,
-    loadingSpinner: false,
+    recipeFilter: '',
+    filteredRecipes: [],
     selectedRecipe: '',
     ingredientSearch: false,
+    ingredientFilter: '',
+    filteredIngredients: [],
     selectedIngredient: ''
   }
 
-
-  getRecipes = () => {
-    fetch(`https://api.edamam.com/search?q=${this.state.filter}&app_id=632e253a&app_key=6666a09ef074ac455f9590ec38d9228e&from=0&to=9`)
+  getRecipesFromAPI = () => {
+    // fetch("http://localhost:3000/api/v1/recipes")
+    fetch("http://192.168.1.7:3000/api/v1/recipes")
       .then(r => r.json())
-      .then(recipes => this.findFootprintOfRecipes(recipes.hits))
+      // .then(recipes => this.setState({ recipes }))
+      .then(r => this.assignRecipesCO2(r))
   }
+
+  assignRecipesCO2 = (r) => {
+    const recipes = r.data
+    recipes.forEach(r => r.co2 = (this.findCO2AllIngredientsOfRecipe(r.attributes["recipe-ingredients"])/r.attributes.servings).toFixed(2))
+    const manuallyFilteredRecipes = recipes.filter(r => r.co2 > 0)
+    this.setState({ recipes: manuallyFilteredRecipes })
+  }
+
+  // getIngredientsFromAPI = () => {
+  //   fetch("http://localhost:3000/api/v1/ingredients")
+  //     .then(r => r.json())
+  //     .then(ingredients => this.setState({ ingredients }))
+  // }
 
   getIngredientData = () => {
     fetch('../food_CO2_data_newest.json')
@@ -37,70 +53,31 @@ class App extends Component {
 
   componentDidMount(){
     this.getIngredientData()
+    this.getRecipesFromAPI()
   }
 
-  findIndividualIngredientFootprint = (ingredient) => {
-    const ingredData = [...this.state.ingredientData]
-    const foundIngredient = ingredData.filter(ingred => ingredient.text.toLowerCase().includes(ingred.food_name.toLowerCase()))
-    foundIngredient.sort(function(a,b){
-      return a.food_name.length - b.food_name.length
-    }).reverse()
-    const ingredientFootprint = foundIngredient.length > 0 
-    ? (foundIngredient[0].kg_CO2_per_kg_produce)*(ingredient.weight/1000)
-    : 0
-    return ingredientFootprint
-  }
-
-  findIngredientsFootprint = (recipe) => {
-    const ingredients = [...recipe.ingredients]
-    const ingredientsCO2Footprint = ingredients.map(ingredient => this.findIndividualIngredientFootprint(ingredient))
-    const summedIngredientsCO2Footprint = ingredientsCO2Footprint.reduce((a, b) => a + b)
-    const summedIngredientsCO2FootprintRounded = summedIngredientsCO2Footprint.toFixed(2)
-    const footprintPerServing = (summedIngredientsCO2Footprint / recipe.yield).toFixed(2)
-    return {
-      name: recipe.label,
-      footprint: summedIngredientsCO2FootprintRounded,
-      footprintPerServing: footprintPerServing, 
-      colour: this.setColour(footprintPerServing)}
-  }
-
-  findFootprintOfRecipes = (fetchedRecipes) => {
-    this.setState({ recipes: fetchedRecipes.map(recipe => recipe.recipe) })
-    const recipes = [...this.state.recipes]
-    const recipeFootprints = recipes.map(recipe => this.findIngredientsFootprint(recipe))
-    this.setState({ recipeFootprintData: recipeFootprints })
-    this.state.recipeFootprintData.length < 1 ? this.setState({ noResults: true }) : this.setState({ noResults: false })
-    this.setState({ loadingSpinner: false })
-  }
-
-  setColour = (footprintPerServing) => {
-    const carbonNumber = footprintPerServing
-    console.log(carbonNumber)
-    if (carbonNumber < 0.2){
-      return 125
-    } else if(0.2 < carbonNumber && carbonNumber < 0.5){
-      return 70
-    } else if (0.5 < carbonNumber && carbonNumber < 2) {
-      return 52
-    } else if(2 < carbonNumber){
+  findCO2AllIngredientsOfRecipe = (ingredients) => {
+    if(ingredients.length > 0){
+      const ingredientsCO2 = ingredients.map(i => this.findCO2SingleIngredient(i))
+      const filteredIngredientsCO2 = ingredientsCO2.filter(n => n)
+      return filteredIngredientsCO2.length > 0 ? filteredIngredientsCO2.reduce((a, b) => a + b) : 0
+    } else {
       return 0
     }
   }
+      
 
-  handleChange = (event) => {
-    this.setState({ filter: event.target.value })
-  }
-
-  handleSubmit = (event) => {
-    if (event.which === 13){
-      this.setState({ loadingSpinner: true })
-      this.getRecipes()
+  findCO2SingleIngredient = (recipe_ing) => {
+    const ingredient = this.state.ingredientData[recipe_ing.ingredient_id-1]
+    if (ingredient) {
+      const CO2 = ingredient.kg_CO2_per_kg_produce * recipe_ing.ingredient_kgs
+      return CO2 === 0 ?  null :  CO2
     }
   }
 
-  handleOnCardClick = () => {
-    this.setState({ selectedRecipe: 'uh' })
-    console.log('clicked')
+  handleOnCardClick = (recipe) => {
+    this.setState({ selectedRecipe: recipe }) 
+    console.log(recipe)
   }
 
   handleLogoClick = () => {
@@ -120,23 +97,54 @@ class App extends Component {
     }
   }
 
+  recipeResults = () => {
+    const foundRecipes = this.state.recipes.filter(r => r.attributes.name.toLowerCase().includes(this.state.recipeFilter.toLowerCase()))
+    // this.setState({ filteredRecipes: foundRecipes })
+    // this.setState({ filteredIngredients: [] })
+    return foundRecipes
+  }
+
+  ingredientResults = () => {
+    const foundIngredients = this.state.ingredientData.filter(i => i.name.toLowerCase().includes(this.state.ingredientFilter.toLowerCase()))
+    this.setState({ filteredIngredients: foundIngredients })
+    this.setState({ filteredRecipes: [] })
+  }
+
+  handleChange = (input) => {
+    if(!this.state.ingredientSearch){
+      this.setState({ recipeFilter: input })
+      this.setState({ ingredientFilter: '' })
+    } else {
+      this.setState({ ingredientFilter: input })
+      this.setState({ recipeFilter: '' })
+    }
+  }
+
+  handleSubmit = () => {
+    console.log('submitted')
+    if(!this.state.ingredientSearch){
+      this.setState({ filteredRecipes: this.recipeResults() })
+    } else {
+      this.setState({ filteredRecipes: this.recipeResults() })
+    }
+  }
+
 
   render() {
     const { 
       recipes, 
       ingredients,
       recipeFootprintData, 
-      noResults, 
-      loadingSpinner, 
       selectedRecipe, 
       ingredientSearch, 
       selectedIngredient, 
-      recipeAndIngredientFilter 
+      recipeAndIngredientFilter,
+      recipeResults,
+      filteredRecipes
           } = this.state
     const { 
-      handleChange, 
+      handleChange,
       handleSubmit, 
-      handleMouseOver, 
       handleOnCardClick, 
       handleLogoClick,
       handleIngredientSearchClick
@@ -144,31 +152,6 @@ class App extends Component {
 
     return (
       <div className="App">
-        {/* <div className="title">
-          <p>Per Serving Carbon Output of Recipes</p>
-        </div>
-        <div className="search-container">
-          <input className="search-box" onChange={(e) => handleChange(e)} onKeyPress={(e) => handleSubmit(e)}></input>
-        </div>
-          <div className="texts-container">
-            { noResults
-              ? 
-              <div position="absolute">No Results</div>
-              :
-              recipeFootprintData.map(recipe =>
-                <div className="text-wrapper">
-                  <p className="card" style={{ background: `hsl(${recipe.colour}, 100%, 44%)` }}>
-                    <div style={{fontSize: "3.5vw", paddingBottom: "8%" }}>
-                      {recipe.name.length > 35 ? `${recipe.name.slice(0, 35)}...` : recipe.name}
-                    </div>
-                    <div style={{ fontSize: "4vw", paddingBottom: "8%" }}>
-                      {recipe.footprintPerServing}kg CO2
-                    </div>
-                  </p>
-                </div>
-              )
-            }
-        </div> */}
         <NavBar handleLogoClick={handleLogoClick} handleIngredientSearchClick={handleIngredientSearchClick}/>
         {
           ingredientSearch 
@@ -177,22 +160,16 @@ class App extends Component {
             : <IngredientContainer/>
           :
             selectedRecipe !== '' 
-            ? <SelectedRecipe handleOnCardClick={handleOnCardClick}/>
+            ? <SelectedRecipe handleOnCardClick={handleOnCardClick} recipe={selectedRecipe} />
             :
             <div>
-              <SearchBar placeholder={"Search for a recipe.."} />
+              <SearchBar handleSubmit={handleSubmit} handleChange={handleChange} placeholder={"Search for a recipe.."} />
               <div className='card-containers'>
-                {
-                  <RecipeCardContainer recipes={recipes} handleOnCardClick={handleOnCardClick}/>
-                }
+                  <RecipeCardContainer recipes={filteredRecipes} handleOnCardClick={handleOnCardClick}/>
               </div>
             </div>
         }
       </div>
-
-
-
-
     );
   }
 }

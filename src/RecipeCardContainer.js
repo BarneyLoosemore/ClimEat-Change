@@ -10,8 +10,12 @@ class RecipeCardContainer extends Component {
         return(
             <div>
                 {
-                    !recipes.length > 0 
-                    ? <RecipeCard handleOnCardClick={handleOnCardClick} />
+                    recipes.length > 0 
+                    ? 
+                        recipes.map(r => 
+                            <RecipeCard recipe={r} handleOnCardClick={handleOnCardClick} /> 
+                        )
+
                     : <div>
                         KG FIGURE IS AMOUNT OF CO2 PER SERVING
                     </div>
