@@ -44,3 +44,12 @@
     color: white;
 }
 
+
+.ingredient-item {
+    margin-left: 12vw;
+    margin-right: 12vw;
+    margin-top: 2vw;
+    margin-bottom: 3vw;
+    font-family: OverPass;
+}
+
