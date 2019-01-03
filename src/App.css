@@ -79,12 +79,25 @@
 .menu-bar {
   width: 35px;
   height: 5px;
-  background-color: black;
+  background-color: white;
   margin: 6px 0;
 }
 
 .nav-menu {
   margin-left: 30vw;
+}
+
+.nav-bar-menu {
+  display: none;
+}
+
+.nav-bar-menu-item {
+  padding: 3vw;
+  font-family: OverPass;
+}
+
+.divider {
+  opacity: 0.3;
 }
 
 .search-box-container {
