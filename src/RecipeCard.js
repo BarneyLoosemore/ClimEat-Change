@@ -33,8 +33,8 @@ class RecipeCard extends Component {
                             }
                         </h2> 
                     </div>
-                    <div className='emission-symbol'>
-                        13KG
+                    <div className='emission-symbol' style={{ background: `hsl(${100-(33*recipe.co2) > 0 ? 100-(33*recipe.co2) : 0}, 68%, 57%)` }}>
+                        {recipe.co2}KG
                     </div>
                 </div>
             </div>

@@ -34,7 +34,7 @@ class App extends Component {
 
   assignRecipesCO2 = (r) => {
     const recipes = r.data
-    recipes.forEach(r => r.co2 = (this.findCO2AllIngredientsOfRecipe(r.attributes["recipe-ingredients"])/r.attributes.servings).toFixed(2))
+    recipes.forEach(r => r.co2 = (this.findCO2AllIngredientsOfRecipe(r.attributes["recipe-ingredients"])/r.attributes.servings).toFixed(1))
     const manuallyFilteredRecipes = recipes.filter(r => r.co2 > 0)
     this.setState({ recipes: manuallyFilteredRecipes })
   }

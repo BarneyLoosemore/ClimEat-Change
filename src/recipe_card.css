@@ -35,7 +35,7 @@
 
 .emission-symbol {
     margin: 5vw;
-    background: green;
+    /* background: green; */
     height: 13vw;
     width: 13vw;
     line-height: 14vw;
