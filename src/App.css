@@ -42,10 +42,96 @@
 }
 
 .search-box {
-  height: 5vw;
+  height: 7vw;
   width: 50vw;
   border: 1px solid black;
 }
+
+
+
+
+
+/* NEWEST STYLING */
+
+.card-containers {
+  padding-top: 18vw;
+}
+
+.nav-bar {
+  display: block;
+  text-align: center;
+  padding: 2vw;
+  /* padding-top: 3vw;
+  padding-bottom: 1vw; */
+  text-decoration: none;
+  font-family: OverPassBold;
+  color: white;
+  background: #3ebf19f0;
+  font-size: 8vw;
+  display: flex;
+}
+
+.clim-eat {
+  margin-right: 20vw;
+  margin-left: 5vw;
+}
+
+.menu-bar {
+  width: 35px;
+  height: 5px;
+  background-color: white;
+  margin: 6px 0;
+}
+
+.nav-menu {
+  margin-left: 30vw;
+}
+
+.nav-bar-menu {
+  display: none;
+}
+
+.nav-bar-menu-item {
+  padding: 3vw;
+  font-family: OverPass;
+}
+
+.divider {
+  opacity: 0.3;
+}
+
+.search-box-container {
+  height: 18vw;
+  background: black;
+  width: 100%;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+}
+
+.sticky+.card-containers {
+  padding-top: 36vw;
+}
+
+.search-input {
+  height: 10vw;
+  width: 65vw;
+  margin-top: 3vw;
+  font-family: OverPass;
+  text-align: center;
+  font-size: 4.5vw;
+}
+
+.ingredients-tag {
+  font-size: 2em;
+  font-family: OverPass;
+  margin-top: 2vw;
+  margin-bottom: 2vw;
+}
+
+
 
 /* responsive design */
 

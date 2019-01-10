@@ -228,11 +228,11 @@
    "kg_CO2_per_kg_produce": 0.63
  },
  {
-   "food_name": "Peppers",
+   "food_name": "Pepper",
    "kg_CO2_per_kg_produce": 0.66
  },
  {
-   "food_name": "Pinto Beans",
+   "food_name": "Pinto Bean",
    "kg_CO2_per_kg_produce": 0.73
  },
  {
@@ -244,7 +244,7 @@
    "kg_CO2_per_kg_produce": 0.75
  },
  {
-   "food_name": "Chickpeas",
+   "food_name": "Chickpea",
    "kg_CO2_per_kg_produce": 0.77
  },
  {
@@ -276,7 +276,15 @@
    "kg_CO2_per_kg_produce": 0.88
  },
  {
+   "food_name": "Cranberry",
+   "kg_CO2_per_kg_produce": 0.92
+ },
+ {
    "food_name": "Cranberries",
+   "kg_CO2_per_kg_produce": 0.92
+ },
+ {
+   "food_name": "Blueberry",
    "kg_CO2_per_kg_produce": 0.92
  },
  {
@@ -320,7 +328,7 @@
    "kg_CO2_per_kg_produce": 1.35
  },
  {
-   "food_name": "Sunflower Seeds",
+   "food_name": "Sunflower Seed",
    "kg_CO2_per_kg_produce": 1.41
  },
  {
@@ -412,6 +420,10 @@
    "kg_CO2_per_kg_produce": 5.77
  },
  {
+   "food_name": "Sausage",
+   "kg_CO2_per_kg_produce": 5.77
+ },
+ {
    "food_name": "Octopus",
    "kg_CO2_per_kg_produce": 7.13
  },
@@ -466,5 +478,9 @@
  {
    "food_name": "Lobster",
    "kg_CO2_per_kg_produce": 27.8
+ },
+ {
+   "food_name": "Unknown ingredient",
+   "kg_CO2_per_kg_produce": 0
  }
 ]
