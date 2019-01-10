@@ -26,7 +26,7 @@ class SelectedRecipe extends Component {
                 </div>
                 <div className="">
                     {
-                        instructions.map(inst => <div className='ingredient-item'> {inst.index}. {inst.content} </div>)
+                        instructions.map(inst => <div className='ingredient-item'> {inst.index}.  {inst.content} </div>)
                     }
                 </div>
             </div>

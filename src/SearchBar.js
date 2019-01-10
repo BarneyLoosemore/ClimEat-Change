@@ -22,6 +22,7 @@ class SearchBar extends Component {
         if(e.key === "Enter"){
             console.log("Submitted")
             this.props.handleSubmit()
+            e.target.blur()
         }
     }
     

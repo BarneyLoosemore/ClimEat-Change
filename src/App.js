@@ -26,7 +26,7 @@ class App extends Component {
 
   getRecipesFromAPI = () => {
     // fetch("http://localhost:3000/api/v1/recipes")
-    fetch("http://192.168.1.7:3000/api/v1/recipes")
+    fetch("http://10.218.6.156:3000/api/v1/recipes")
       .then(r => r.json())
       // .then(recipes => this.setState({ recipes }))
       .then(r => this.assignRecipesCO2(r))
@@ -38,12 +38,6 @@ class App extends Component {
     const manuallyFilteredRecipes = recipes.filter(r => r.co2 > 0)
     this.setState({ recipes: manuallyFilteredRecipes })
   }
-
-  // getIngredientsFromAPI = () => {
-  //   fetch("http://localhost:3000/api/v1/ingredients")
-  //     .then(r => r.json())
-  //     .then(ingredients => this.setState({ ingredients }))
-  // }
 
   getIngredientData = () => {
     fetch('../food_CO2_data_newest.json')
@@ -77,6 +71,8 @@ class App extends Component {
 
   handleOnCardClick = (recipe) => {
     this.setState({ selectedRecipe: recipe }) 
+    document.body.scrollTop = 0
+    document.documentElement.scrollTop = 0;
     console.log(recipe)
   }
 
