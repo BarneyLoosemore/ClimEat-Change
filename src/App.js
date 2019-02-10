@@ -25,8 +25,8 @@ class App extends Component {
   }
 
   getRecipesFromAPI = () => {
-    // fetch("http://localhost:3000/api/v1/recipes")
-    fetch("http://10.218.6.156:3000/api/v1/recipes")
+    fetch("http://localhost:3000/api/v1/recipes")
+    // fetch("http://10.218.6.156:3000/api/v1/recipes")
       .then(r => r.json())
       // .then(recipes => this.setState({ recipes }))
       .then(r => this.assignRecipesCO2(r))
