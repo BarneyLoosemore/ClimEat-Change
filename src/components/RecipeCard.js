@@ -1,4 +1,5 @@
 import React from 'react'
+
 import './recipe_card.css'
 
 
@@ -21,7 +22,7 @@ class RecipeCard extends React.Component {
             <div className='card-wrapper'>
                 <div>
                     <div className='divider-wrapper'/>
-                    <img onClick={() => handleOnCardClick(recipe)} className='image-wrapper' src={recipe.attributes["image-url"]} alt={recipe.title} flexWrap='wrap'></img>
+                    <img onClick={() => handleOnCardClick(recipe)} className='image-wrapper' src={recipe.attributes["image-url"]} alt={recipe.title} ></img>
                 </div>
                 <div className='text-and-symbol-wrapper'>
                     <div className='recipe-text'>

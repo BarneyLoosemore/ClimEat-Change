@@ -2,13 +2,13 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import './App.css'
 
-import NavBar from './NavBar.js'
-import SearchBar from './SearchBar.js'
-import SelectedRecipe from './SelectedRecipe.js'
-import IngredientContainer from './IngredientContainer.js'
-import SelectedIngredient from './SelectedIngredient.js'
-import RecipeCardContainer from './RecipeCardContainer.js'
-import history from '../history'
+import NavBar from '../NavBar.js'
+import SearchBar from '../SearchBar.js'
+import SelectedRecipe from '../SelectedRecipe.js'
+import IngredientContainer from '../IngredientContainer.js'
+import SelectedIngredient from '../SelectedIngredient.js'
+import RecipeCardContainer from '../RecipeCardContainer.js'
+import history from '../../history'
 
 
 class App extends React.Component {
@@ -62,25 +62,30 @@ class App extends React.Component {
     } else {
       return 0
     }
-  }
-      
+  } 
 
   findCO2SingleIngredient = (recipe_ing) => {
     const ingredient = this.state.ingredientData[recipe_ing.ingredient_id-1]
     if (ingredient) {
       const CO2 = ingredient.kg_CO2_per_kg_produce * recipe_ing.ingredient_kgs
-      return CO2 === 0 ?  null :  CO2
+      return CO2 === 0 ?  null : CO2
     }
   }
 
   handleIngredientOrRecipeSearchClick = () => {
-    if (this.state.recipeSearch) {
-      this.setState({ recipeSearch: false })
-      history.push('/ingredients')
-    } else {
-      this.setState({ recipeSearch: true })
-      history.push('/')
-    }
+    const { recipeSearch } = this.state
+ 
+    recipeSearch ? history.push('/ingredients') : history.push('/')
+    this.setState({ recipeSearch: !recipeSearch })
+
+
+    // if (this.state.recipeSearch) {
+    //   this.setState({ recipeSearch: false })
+    //   history.push('/ingredients')
+    // } else {
+    //   this.setState({ recipeSearch: true })
+    //   history.push('/')
+    // }
   }
 
 
@@ -92,7 +97,7 @@ class App extends React.Component {
   }
 
   handleLogoClick = () => {
-    this.setState({ selectedRecipe: '' })
+    this.setState({ recipeSearch: true, selectedRecipe: '', recipeFilter: '', ingredientFilter: '' })
     history.push('/')
   }
 
@@ -108,7 +113,7 @@ class App extends React.Component {
   }
 
   handleChange = (input) => {
-    if (!this.state.ingredientSearch){
+    if (!this.state.recipeSearch){
       this.setState({ recipeFilter: input })
       this.setState({ ingredientFilter: '' })
     } else {
@@ -124,6 +129,7 @@ class App extends React.Component {
 
   render() {
     const { 
+      // get rid of some of these
       recipes, 
       ingredients,
       recipeFootprintData, 
@@ -132,10 +138,9 @@ class App extends React.Component {
       selectedIngredient, 
       recipeAndIngredientFilter,
       recipeResults,
-
       recipeSearch,
       filteredRecipes
-          } = this.state
+    } = this.state
 
     const { 
       handleChange,
@@ -143,10 +148,9 @@ class App extends React.Component {
       handleOnCardClick, 
       handleLogoClick,
       handleIngredientOrRecipeSearchClick
-          } = this
+    } = this
 
     return (
-
 
     <div className="App">
       <NavBar recipeSearch={recipeSearch} handleLogoClick={handleLogoClick} handleIngredientOrRecipeSearchClick={handleIngredientOrRecipeSearchClick} />
