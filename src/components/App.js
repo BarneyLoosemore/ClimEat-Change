@@ -8,13 +8,13 @@ import SelectedRecipe from './SelectedRecipe.js'
 import IngredientContainer from './IngredientContainer.js'
 import SelectedIngredient from './SelectedIngredient.js'
 import RecipeCardContainer from './RecipeCardContainer.js'
-import ExampleComponent from './ExampleComponent'
 import history from '../history'
 
 
 class App extends React.Component {
 
   state = {
+    // delete state items where necessary
     recipes: [],
     ingredients: [],
     ingredientData: [],
@@ -22,17 +22,28 @@ class App extends React.Component {
     recipeFilter: '',
     filteredRecipes: [],
     selectedRecipe: '',
-    ingredientSearch: false,
+
+    recipeSearch: true,
     ingredientFilter: '',
     filteredIngredients: [],
     selectedIngredient: ''
+  }
+
+  componentDidMount(){
+    this.getIngredientData()
+    this.getRecipesFromAPI()
+  }
+
+  getIngredientData = () => {
+    fetch('../food_CO2_data_newest.json')
+      .then(r => r.json())
+      .then(ingredientData => this.setState({ ingredientData }))
   }
 
   getRecipesFromAPI = () => {
     fetch("http://localhost:3000/api/v1/recipes")
     // fetch("http://10.218.6.156:3000/api/v1/recipes")
       .then(r => r.json())
-      // .then(recipes => this.setState({ recipes }))
       .then(r => this.assignRecipesCO2(r))
   }
 
@@ -43,19 +54,8 @@ class App extends React.Component {
     this.setState({ recipes: manuallyFilteredRecipes })
   }
 
-  getIngredientData = () => {
-    fetch('../food_CO2_data_newest.json')
-      .then(r => r.json())
-      .then(ingredientData => this.setState({ ingredientData }))
-  }
-
-  componentDidMount(){
-    this.getIngredientData()
-    this.getRecipesFromAPI()
-  }
-
   findCO2AllIngredientsOfRecipe = (ingredients) => {
-    if(ingredients.length > 0){
+    if (ingredients.length > 0){
       const ingredientsCO2 = ingredients.map(i => this.findCO2SingleIngredient(i))
       const filteredIngredientsCO2 = ingredientsCO2.filter(n => n)
       return filteredIngredientsCO2.length > 0 ? filteredIngredientsCO2.reduce((a, b) => a + b) : 0
@@ -73,28 +73,27 @@ class App extends React.Component {
     }
   }
 
+  handleIngredientOrRecipeSearchClick = () => {
+    if (this.state.recipeSearch) {
+      this.setState({ recipeSearch: false })
+      history.push('/ingredients')
+    } else {
+      this.setState({ recipeSearch: true })
+      history.push('/')
+    }
+  }
+
+
   handleOnCardClick = (recipe) => {
     this.setState({ selectedRecipe: recipe }) 
     document.body.scrollTop = 0
     document.documentElement.scrollTop = 0
-    history.push('/example')
+    history.push(`/recipes/${recipe.id}`)
   }
 
   handleLogoClick = () => {
     this.setState({ selectedRecipe: '' })
-    this.setState({ ingredientSearch: false })
-  }
-
-  handleIngredientSearchClick = () => {
-    this.setState({ ingredientSearch: true })
-  }
-
-  handleRecipeAndIngredientFilterChange = (filter) => {
-    if (this.state.ingredientSearch === true){
-      // set the ingredients that include the filter
-    } else {
-      // set the recipes that include the filter
-    }
+    history.push('/')
   }
 
   recipeResults = () => {
@@ -109,7 +108,7 @@ class App extends React.Component {
   }
 
   handleChange = (input) => {
-    if(!this.state.ingredientSearch){
+    if (!this.state.ingredientSearch){
       this.setState({ recipeFilter: input })
       this.setState({ ingredientFilter: '' })
     } else {
@@ -119,12 +118,7 @@ class App extends React.Component {
   }
 
   handleSubmit = () => {
-    console.log('submitted')
-    if(!this.state.ingredientSearch){
-      this.setState({ filteredRecipes: this.recipeResults() })
-    } else {
-      this.setState({ filteredRecipes: this.recipeResults() })
-    }
+    this.setState({ filteredRecipes: this.recipeResults() })
   }
 
 
@@ -138,58 +132,41 @@ class App extends React.Component {
       selectedIngredient, 
       recipeAndIngredientFilter,
       recipeResults,
+
+      recipeSearch,
       filteredRecipes
           } = this.state
+
     const { 
       handleChange,
       handleSubmit, 
       handleOnCardClick, 
       handleLogoClick,
-      handleIngredientSearchClick
+      handleIngredientOrRecipeSearchClick
           } = this
 
     return (
 
 
     <div className="App">
-      <NavBar handleLogoClick={handleLogoClick} handleIngredientSearchClick={handleIngredientSearchClick} />
-      <SearchBar handleSubmit={handleSubmit} handleChange={handleChange} placeholder={"Search for a recipe.."} />
+      <NavBar recipeSearch={recipeSearch} handleLogoClick={handleLogoClick} handleIngredientOrRecipeSearchClick={handleIngredientOrRecipeSearchClick} />
       <Switch>
-        <Route exact path ='/' render={() => <RecipeCardContainer recipes={filteredRecipes} handleOnCardClick={handleOnCardClick}/>} />
-        <Route exact path={`/${selectedRecipe.id}`} render={() => <SelectedRecipe recipe={selectedRecipe} />} />
-        <Route exact path='/ingredients' component={IngredientContainer} />
+        <Route exact path ='/' render={() => 
+        <>
+          <SearchBar handleSubmit={handleSubmit} handleChange={handleChange} placeholder={"Search for a recipe.."} />
+          <RecipeCardContainer recipes={filteredRecipes} handleOnCardClick={handleOnCardClick}/>
+        </>
+        }/>
+        <Route exact path={`/recipes/${selectedRecipe.id}`} render={() => <SelectedRecipe recipe={selectedRecipe} />} />
+        <Route exact path='/ingredients' render={() => <IngredientContainer />} />
         {/* <Route exact path={`/ingredients/${REPLACE_ME}`} /> */}
         <Route exact path='/about' />
         {/* <Route component={PageNotFound} /> */}
-        <Route exact path='/example' component={ExampleComponent} />
       </Switch>
     </div>
 
-
-
-
-
-      // <div className="App">
-      //   <NavBar handleLogoClick={handleLogoClick} handleIngredientSearchClick={handleIngredientSearchClick}/>
-      //   {
-      //     ingredientSearch 
-      //     ? selectedIngredient !== ''
-      //       ? <SelectedIngredient/>
-      //       : <IngredientContainer/>
-      //     :
-      //       selectedRecipe !== '' 
-      //       ? <SelectedRecipe handleOnCardClick={handleOnCardClick} recipe={selectedRecipe} />
-      //       :
-      //       <div>
-      //         <SearchBar handleSubmit={handleSubmit} handleChange={handleChange} placeholder={"Search for a recipe.."} />
-      //         <div className='card-containers'>
-      //             <RecipeCardContainer recipes={filteredRecipes} handleOnCardClick={handleOnCardClick}/>
-      //         </div>
-      //       </div>
-      //   }
-      // </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

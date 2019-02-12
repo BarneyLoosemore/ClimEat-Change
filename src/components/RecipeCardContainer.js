@@ -4,7 +4,6 @@ import RecipeCard from './RecipeCard.js'
 
 class RecipeCardContainer extends React.Component {
 
-
     render(){
         const { handleOnCardClick, recipes } = this.props
         return(

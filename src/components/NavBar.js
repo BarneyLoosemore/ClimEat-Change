@@ -24,14 +24,14 @@ class NavBar extends React.Component {
 
     }
 
-    handleIngredientSearchClickAndCloseMenu = () => {
+    handleSearchChangeClickAndCloseMenu = () => {
         this.handleMenuBarClick()
-        this.props.handleIngredientSearchClick()
+        this.props.handleIngredientOrRecipeSearchClick()
     }
 
     render(){
-        const { handleMenuBarClick, handleIngredientSearchClickAndCloseMenu } = this
-        const{ handleLogoClick } = this.props
+        const { handleMenuBarClick, handleSearchChangeClickAndCloseMenu } = this
+        const{ handleLogoClick, recipeSearch } = this.props
         return(
             <div>
                 <div className='nav-bar'>
@@ -47,7 +47,7 @@ class NavBar extends React.Component {
                 </div>
 
                 <div className='nav-bar-menu'>
-                    <div onClick={handleIngredientSearchClickAndCloseMenu} className='nav-bar-menu-item'>Ingredient Search</div>
+                    <div onClick={handleSearchChangeClickAndCloseMenu} className='nav-bar-menu-item'>{recipeSearch ? "Ingredient Search" : "Recipe Search"}</div>
                         <hr className='divider'/>
                     <div className ='nav-bar-menu-item'>Statistics</div>
                         <hr className='divider'/>

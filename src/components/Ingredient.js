@@ -9,7 +9,7 @@ class Ingredient extends React.Component {
             <div className='card-wrapper'>
                 <div>
                     <div className='divider-wrapper'/>
-                    <img className='image-wrapper' src='../cheese.jpeg' alt='penne pasta image' flexWrap='wrap'></img>
+                    <img className='image-wrapper' src='../cheese.jpeg' alt="" ></img>
                 </div>
                 <div className='text-and-symbol-wrapper'>
                     <div className='recipe-text'>

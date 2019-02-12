@@ -5,12 +5,12 @@ import RecipeCard from './RecipeCard.js'
 class SelectedRecipe extends React.Component {
 
     render(){
-        const { handleOnCardClick, recipe } = this.props
+        const { recipe } = this.props
         const ingredients = recipe.attributes["recipe-ingredients"]
         const instructions = recipe.attributes.instructions
         return(
             <div className=''>
-                <RecipeCard recipe={recipe} handleOnCardClick={handleOnCardClick}/>
+                <RecipeCard recipe={recipe} />
                 <hr/>
                 <div className="ingredients-tag">
                     Ingredients
