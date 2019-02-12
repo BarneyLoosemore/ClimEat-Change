@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
+import React from 'react'
 import RecipeCard from './RecipeCard.js'
 
 
-class RecipeCardContainer extends Component {
+class RecipeCardContainer extends React.Component {
 
 
     render(){
         const { handleOnCardClick, recipes } = this.props
         return(
-            <div>
+            <div className='card-containers'>
                 {
                     recipes.length > 0 
                     ? 

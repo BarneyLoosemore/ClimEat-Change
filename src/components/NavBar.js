@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './App.css'
 
 
-class NavBar extends Component {
+class NavBar extends React.Component {
 
     state = {
         displayMenu: false,

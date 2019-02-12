@@ -1,12 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './recipe_card.css'
 
 
-class RecipeCard extends Component {
+class RecipeCard extends React.Component {
 
     findFontSize = () => {
         const name = this.props.recipe.attributes.name
-        console.log(name)
         if(name.length > 18){
             return "1.5em"
         } else if(name.length > 25){
@@ -22,7 +21,7 @@ class RecipeCard extends Component {
             <div className='card-wrapper'>
                 <div>
                     <div className='divider-wrapper'/>
-                    <img onClick={() => handleOnCardClick(recipe)} className='image-wrapper' src={recipe.attributes["image-url"]} alt='penne pasta image' flexWrap='wrap'></img>
+                    <img onClick={() => handleOnCardClick(recipe)} className='image-wrapper' src={recipe.attributes["image-url"]} alt={recipe.title} flexWrap='wrap'></img>
                 </div>
                 <div className='text-and-symbol-wrapper'>
                     <div className='recipe-text'>

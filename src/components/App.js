@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { Switch, Route } from 'react-router-dom'
 import './App.css'
 
 import NavBar from './NavBar.js'
@@ -7,9 +8,11 @@ import SelectedRecipe from './SelectedRecipe.js'
 import IngredientContainer from './IngredientContainer.js'
 import SelectedIngredient from './SelectedIngredient.js'
 import RecipeCardContainer from './RecipeCardContainer.js'
+import ExampleComponent from './ExampleComponent'
+import history from '../history'
 
 
-class App extends Component {
+class App extends React.Component {
 
   state = {
     recipes: [],
@@ -73,8 +76,8 @@ class App extends Component {
   handleOnCardClick = (recipe) => {
     this.setState({ selectedRecipe: recipe }) 
     document.body.scrollTop = 0
-    document.documentElement.scrollTop = 0;
-    console.log(recipe)
+    document.documentElement.scrollTop = 0
+    history.push('/example')
   }
 
   handleLogoClick = () => {
@@ -146,25 +149,45 @@ class App extends Component {
           } = this
 
     return (
-      <div className="App">
-        <NavBar handleLogoClick={handleLogoClick} handleIngredientSearchClick={handleIngredientSearchClick}/>
-        {
-          ingredientSearch 
-          ? selectedIngredient !== ''
-            ? <SelectedIngredient/>
-            : <IngredientContainer/>
-          :
-            selectedRecipe !== '' 
-            ? <SelectedRecipe handleOnCardClick={handleOnCardClick} recipe={selectedRecipe} />
-            :
-            <div>
-              <SearchBar handleSubmit={handleSubmit} handleChange={handleChange} placeholder={"Search for a recipe.."} />
-              <div className='card-containers'>
-                  <RecipeCardContainer recipes={filteredRecipes} handleOnCardClick={handleOnCardClick}/>
-              </div>
-            </div>
-        }
-      </div>
+
+
+    <div className="App">
+      <NavBar handleLogoClick={handleLogoClick} handleIngredientSearchClick={handleIngredientSearchClick} />
+      <SearchBar handleSubmit={handleSubmit} handleChange={handleChange} placeholder={"Search for a recipe.."} />
+      <Switch>
+        <Route exact path ='/' render={() => <RecipeCardContainer recipes={filteredRecipes} handleOnCardClick={handleOnCardClick}/>} />
+        <Route exact path={`/${selectedRecipe.id}`} render={() => <SelectedRecipe recipe={selectedRecipe} />} />
+        <Route exact path='/ingredients' component={IngredientContainer} />
+        {/* <Route exact path={`/ingredients/${REPLACE_ME}`} /> */}
+        <Route exact path='/about' />
+        {/* <Route component={PageNotFound} /> */}
+        <Route exact path='/example' component={ExampleComponent} />
+      </Switch>
+    </div>
+
+
+
+
+
+      // <div className="App">
+      //   <NavBar handleLogoClick={handleLogoClick} handleIngredientSearchClick={handleIngredientSearchClick}/>
+      //   {
+      //     ingredientSearch 
+      //     ? selectedIngredient !== ''
+      //       ? <SelectedIngredient/>
+      //       : <IngredientContainer/>
+      //     :
+      //       selectedRecipe !== '' 
+      //       ? <SelectedRecipe handleOnCardClick={handleOnCardClick} recipe={selectedRecipe} />
+      //       :
+      //       <div>
+      //         <SearchBar handleSubmit={handleSubmit} handleChange={handleChange} placeholder={"Search for a recipe.."} />
+      //         <div className='card-containers'>
+      //             <RecipeCardContainer recipes={filteredRecipes} handleOnCardClick={handleOnCardClick}/>
+      //         </div>
+      //       </div>
+      //   }
+      // </div>
     );
   }
 }

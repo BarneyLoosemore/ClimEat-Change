@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 
-class SelectedIngredient extends Component {
+class SelectedIngredient extends React.Component {
 
     render(){
         return(

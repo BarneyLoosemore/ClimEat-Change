@@ -1,9 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
+
 import SearchBar from './SearchBar.js'
 import Ingredient from './Ingredient.js'
 
 
-class IngredientContainer extends Component {
+class IngredientContainer extends React.Component {
 
     render(){
         return(

@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './recipe_card.css'
 
 
-class Ingredient extends Component {
+class Ingredient extends React.Component {
 
     render(){
         return(

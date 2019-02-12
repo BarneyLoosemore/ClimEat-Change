@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './recipe_card.css'
 import RecipeCard from './RecipeCard.js'
 
-class SelectedRecipe extends Component {
+class SelectedRecipe extends React.Component {
 
     render(){
         const { handleOnCardClick, recipe } = this.props
