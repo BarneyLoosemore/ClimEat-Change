@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
+
 import NavBar from './NavBar.js'
 import SearchBar from './SearchBar.js'
 import SelectedRecipe from './SelectedRecipe.js'
@@ -95,8 +96,6 @@ class App extends Component {
 
   recipeResults = () => {
     const foundRecipes = this.state.recipes.filter(r => r.attributes.name.toLowerCase().includes(this.state.recipeFilter.toLowerCase()))
-    // this.setState({ filteredRecipes: foundRecipes })
-    // this.setState({ filteredIngredients: [] })
     return foundRecipes
   }
 
